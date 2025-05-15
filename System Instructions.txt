@@ -1,0 +1,21 @@
+APPLICATION REQUIREMENTS
+1. Download any PHP Server. Ex. Laragon, XAMPP, WAMP or LAMP (for Linux)
+   Note: PHP Server must be 7.4 >= 8.0. Otherwise, there's an error.
+
+INSTALLATION OF SYSTEM
+1. Download the zip file and unzipped it.
+2. Copy the folder to the PHP Server folder.
+   Example: 
+	in XAMPP - 	C://xampp/htdocs
+	in Laragon - 	C://laragon/www
+	in WAMPP - 	C://wamp/www
+
+CREATING DATABASE
+1. Access the PHP MYADMIN. Example in XAMPP: localhost/phpMyAdmin
+2. Click Databases.
+3. Add new database and name it masteral_system
+4. Import the masteral_system.sql file located at HEMovieCenter/database/ folder
+
+ACCESSING THE SITE
+To access or open the login page, just type localhost/HEMovieCenter at the address bar.
+Note: Make sure that your PHP Server is running.
