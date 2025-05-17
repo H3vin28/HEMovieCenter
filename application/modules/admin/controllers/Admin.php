@@ -13,7 +13,9 @@ class Admin extends MX_Controller {
 	{	
 		$row = $this->checkAccountNotNull();
 		$this->heading($row);
-		$this->load->view('content');
+		$data['movies'] = $this->model->getAllData('movies',[]);
+		$data['users'] = $this->model->getAllData('accounts',[]);
+		$this->load->view('content',$data);
 		$this->load->view('footer');
 	}
     
@@ -145,7 +147,7 @@ class Admin extends MX_Controller {
 		$where = ['id'=>$id];
 		$data = ['password'=>base64_encode(md5('Ch@ngeMe'))];
 		if($this->model->updateData('accounts',$data,$where)){
-    		$this->session->set_flashdata('message',"Account reset successfully!");
+    		$this->session->set_flashdata('message',"Account reset successfully! The new password is Ch@ngeMe");
 			$this->session->set_flashdata('icon',"success");
     	} else {
     		$this->session->set_flashdata('message',"There's an error in resetting an account!");
@@ -153,6 +155,23 @@ class Admin extends MX_Controller {
     	}
     	redirect(base_url('admin/users/'));
 	}
+
+	public function add_admin_account(){
+		$row = $this->checkAccountNotNull();
+		$data = $this->input->post();
+		$data['password'] = base64_encode(md5('Ch@ngeMe'));
+		$data['usertype'] = 'admin';
+		// var_dump($data);exit;
+		if($this->model->insertData('accounts',$data)){
+    		$this->session->set_flashdata('message',"New admin successfully created! The default password is Ch@ngeMe");
+			$this->session->set_flashdata('icon',"success");
+    	} else {
+    		$this->session->set_flashdata('message',"There's an error in creating an admin account!");
+			$this->session->set_flashdata('icon',"error");
+    	}
+    	redirect(base_url('admin/users/'));
+	}
+
 
 	function heading($row=null){
 		$data['row'] = $row;

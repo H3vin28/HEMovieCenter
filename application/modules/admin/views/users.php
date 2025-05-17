@@ -5,7 +5,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">ALL USERS</h1>
+            <h1 class="m-0 float-left">ALL USERS</h1>
+            <button class="btn btn-success ml-3" type="button" data-toggle="modal" data-target="#add-admin-modal"><i class="fas fa-plus-square"></i> Add Admin</button>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -66,6 +67,63 @@
     </section>
   </div>
 
+  <div class="modal fade" id="add-admin-modal">
+    <div class="modal-dialog">
+      <form action="<?= base_url('admin/add_admin_account/')?>" method="post" id="add_admin_submit">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title"><i class="fas fa-plus-square"></i> ADDING NEW ADMIN</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Fullname</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="fullname" placeholder="Enter Fullname">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Username</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                  </div>
+                  <input type="text" class="form-control" name="username" placeholder="Enter Username">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Email Address</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <input type="email" class="form-control" name="email" placeholder="Enter Email Address">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Add Account</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
   <div class="modal fade" id="modal-delete-account">
     <div class="modal-dialog">
       <form action="<?= base_url('admin/delete_account/')?>" method="post">

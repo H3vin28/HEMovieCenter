@@ -154,6 +154,50 @@
       }
     });
 
+    $.validator.setDefaults({
+      submitHandler: function () {
+        $('#add_admin_submit').submit();
+      }
+    });
+
+    $('#add_admin_submit').validate({
+      rules: {
+        fullname: {
+          required: true
+        },
+        username: {
+          required: true
+        },
+        email: {
+          required: true
+        }
+      },
+      messages: {
+        fullname: {
+          required: "Fullname is required."
+        },
+        username: {
+          required: "Username is required."
+        },
+        email: {
+          required: "Email address is required."
+        }
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.input-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+
+
+
     $('.delete_btn').on("click", function(){
       var id = $(this).data('id');
       var movie = $(this).data('movie');
@@ -255,6 +299,50 @@
       $('#account_reset_name').text(name);
       $('input[name="reset_account_id"]').val(id);
     });
+
+    var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+    var donutData        = {
+      labels: [
+          'Action',
+          'Adventure',
+          'Animation',
+          'Biography',
+          'Comedy',
+          'Crime',
+          'Documentary',
+          'Drama',
+          'Family',
+          'Fantasy',
+          'History',
+          'Horror',
+          'Music',
+          'Musical',
+          'Mystery',
+          'Romance',
+          'Sci-Fi',
+          'Sport',
+          'Thriller',
+          'War',
+          'Western',
+      ],
+      datasets: [
+        {
+          data: [14,10,7,1,11,12,2,7,4,9,2,6,2,3,5,5,13,3,8,4,7],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#f2d6de', '#02d6de','red', 'blue', 'orange', 'yellow', 'violet', 'green','olive','indigo','pink','magenta','brown','black','#20f440'],
+        }
+      ]
+    }
+    var donutOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    new Chart(donutChartCanvas, {
+      type: 'doughnut',
+      data: donutData,
+      options: donutOptions
+    })
   });
 </script>
 </body>
